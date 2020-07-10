@@ -10,6 +10,6 @@ Process to use this code: <br>
 -----------------------
 Add the multi object tracking function
 example two object (blue and black)
- $ catkin_make
- $ roslaunch realsense2_camera rs_rgbd.launch
+ $ catkin_make <br>
+ $ roslaunch realsense2_camera rs_rgbd.launch <br>
  $ roslaunch opencv_object_tracking object_tracking.launch
