@@ -5,6 +5,11 @@ I'm willing to disscuss and develop from this.<br>
 Process to use this code: <br>
  $ catkin_make <br>
  $ roslaunch realsense2_camera rs_rgbd.launch <br>
- $rosrun opencv_object_tracking object_filter
+ $ rosrun opencv_object_tracking object_filter
  
-
+-----------------------
+Add the multi object tracking function
+example two object (blue and black)
+ $ catkin_make
+ $ roslaunch realsense2_camera rs_rgbd.launch
+ $ roslaunch opencv_object_tracking object_tracking.launch
