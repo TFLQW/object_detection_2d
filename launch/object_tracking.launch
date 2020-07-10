@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<launch>
+
+    <node name="multi_object_filter" pkg="opencv_object_tracking" type="multi_object_filter" respawn="false" output="screen"/>
+    <rosparam command="load" file="$(find opencv_object_tracking)/config/calibration_matrix.yaml" />
+    <node name="calibrtion" pkg="opencv_object_tracking" type="calibration.py" respawn="false" output="screen"/>
+
+</launch>

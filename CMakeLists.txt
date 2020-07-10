@@ -58,11 +58,11 @@ add_message_files(
  )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+add_service_files(
+    FILES
+    TransferObject.srv
 #   Service2.srv
-# )
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -141,6 +141,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(object_filter src/object_filter.cpp)
+add_executable(multi_object_filter src/multi_object_filter.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -154,6 +155,7 @@ add_executable(object_filter src/object_filter.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(object_filter ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+target_link_libraries(multi_object_filter ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #############
 ## Install ##
