@@ -8,8 +8,9 @@ Process to use this code: <br>
  $ rosrun opencv_object_tracking object_filter
  
 -----------------------
-Add the multi object tracking function
-example two object (blue and black) <br>
+Add the multi object tracking function (example two object (blue and black)) <br>
  $ catkin_make <br>
  $ roslaunch realsense2_camera rs_rgbd.launch <br>
- $ roslaunch opencv_object_tracking object_tracking.launch
+ $ roslaunch opencv_object_tracking object_tracking.launch <br>
+
+The service **/transfer_acutal_position** is to transfer the object position in the robot coordinate system
