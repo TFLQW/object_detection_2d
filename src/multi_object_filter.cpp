@@ -90,21 +90,43 @@ string intToString(int number)
 
 void drawObject(int x, int y, Mat &frame, int id)
 {
-        circle(frame, Point(x, y), 20, Scalar(0, 255, 0), 2); //50
-        if (y - 25 > 0)
+	if (id == 1)
+	{
+            circle(frame, Point(x, y), 20, Scalar(0, 255, 0), 2); //50
+            if (y - 25 > 0)
                 line(frame, Point(x, y), Point(x, y - 25), Scalar(0, 255, 0), 2);
-        else line(frame, Point(x, y), Point(x, 0), Scalar(0, 255, 0), 2);
-        if (y + 25 < FRAME_HEIGHT)
+            else line(frame, Point(x, y), Point(x, 0), Scalar(0, 255, 0), 2);
+            if (y + 25 < FRAME_HEIGHT)
                 line(frame, Point(x, y), Point(x, y + 25), Scalar(0, 255, 0), 2);
-        else line(frame, Point(x, y), Point(x, FRAME_HEIGHT), Scalar(0, 255, 0), 2);
-        if (x - 25 > 0)
+            else line(frame, Point(x, y), Point(x, FRAME_HEIGHT), Scalar(0, 255, 0), 2);
+            if (x - 25 > 0)
                 line(frame, Point(x, y), Point(x - 25, y), Scalar(0, 255, 0), 2);
-        else line(frame, Point(x, y), Point(0, y), Scalar(0, 255, 0), 2);
-        if (x + 25 < FRAME_WIDTH)
+            else line(frame, Point(x, y), Point(0, y), Scalar(0, 255, 0), 2);
+            if (x + 25 < FRAME_WIDTH)
                 line(frame, Point(x, y), Point(x + 25, y), Scalar(0, 255, 0), 2);
-        else line(frame, Point(x, y), Point(FRAME_WIDTH, y), Scalar(0, 255, 0), 2);
+            else line(frame, Point(x, y), Point(FRAME_WIDTH, y), Scalar(0, 255, 0), 2);
+            putText(frame, intToString(x) + "," + intToString(y), Point(x, y + 30), 1, 1, Scalar(0, 255, 0), 2);
+	}
+	else if (id == 2)
+	{
+            circle(frame, Point(x, y), 20, Scalar(255, 255, 0), 2); //50
+            if (y - 25 > 0)
+                line(frame, Point(x, y), Point(x, y - 25), Scalar(255, 255, 0), 2);
+            else line(frame, Point(x, y), Point(x, 0), Scalar(255, 255, 0), 2);
+            if (y + 25 < FRAME_HEIGHT)
+                line(frame, Point(x, y), Point(x, y + 25), Scalar(255, 255, 0), 2);
+            else line(frame, Point(x, y), Point(x, FRAME_HEIGHT), Scalar(255, 255, 0), 2);
+            if (x - 25 > 0)
+                line(frame, Point(x, y), Point(x - 25, y), Scalar(255, 255, 0), 2);
+            else line(frame, Point(x, y), Point(0, y), Scalar(255, 255, 0), 2);
+            if (x + 25 < FRAME_WIDTH)
+                line(frame, Point(x, y), Point(x + 25, y), Scalar(255, 255, 0), 2);
+            else line(frame, Point(x, y), Point(FRAME_WIDTH, y), Scalar(255, 255, 0), 2);
+            putText(frame, intToString(x) + "," + intToString(y), Point(x, y + 30), 1, 1, Scalar(255, 255, 0), 2);
+	}
 
-        putText(frame, intToString(x) + "," + intToString(y), Point(x, y + 30), 1, 1, Scalar(0, 255, 0), 2);
+
+
 	if (id == 1)
 	{
 	    ::posX_1 = x;
@@ -185,7 +207,7 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed, int id)
 				if (id == 1)
                                     putText(cameraFeed, "Position Object 1 tracking ", Point(0, 50), 2, 1, Scalar(0, 255, 0), 1.5);
 				else if (id == 2)
-				    putText(cameraFeed, "Position Object 2 tracking ", Point(0, 80), 2, 1, Scalar(0, 255, 0), 1.5);
+				    putText(cameraFeed, "Position Object 2 tracking ", Point(0, 80), 2, 1, Scalar(255, 255, 0), 1.5);
                                 //draw object location on screen x y is the positon in the image(pixel postion)
                                 drawObject(x, y, cameraFeed, id);
                         }
@@ -221,7 +243,6 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)  //the callback functi
 
 
     cvtColor(cv_ptr->image, HSV, COLOR_BGR2HSV);
-
     inRange(HSV, Scalar(H_MIN_Blue, S_MIN_Blue, V_MIN_Blue), Scalar(H_MAX_Blue, S_MAX_Blue, V_MAX_Blue), threshold_blue);
     inRange(HSV, Scalar(H_MIN_Black, S_MIN_Black, V_MIN_Black), Scalar(H_MAX_Black, S_MAX_Black, V_MAX_Black), threshold_black);
 

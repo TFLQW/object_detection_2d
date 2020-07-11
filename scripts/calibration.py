@@ -41,7 +41,7 @@ def Handle_Transfer_Object(req):
 
 def callback(data):
     global object_1_position, object_2_position, counter_1, counter_2
-    # store the sample data until it is up to 5 and compute the average position to filter the noise
+    # store the sample data until it is up to 5 and compute the average position to filter the noise ; I have divided the Position_XYZ into two seperated array, not in an array, by judging the counter
     if data.counter == 1:
         object_1_position_temp[counter_1,:] = np.array([data.Position_XYZ[0].x, data.Position_XYZ[0].y, data.Position_XYZ[0].z])
         counter_1 = counter_1 + 1
@@ -84,9 +84,9 @@ if __name__ == '__main__':
     translation_y = rospy.get_param('/translation/y')
     translation_z = rospy.get_param('/translation/z')
     rotation_x = rospy.get_param('/rotation/x')
-    rotation_y = rospy.get_param('/rotation/x')
-    rotation_z = rospy.get_param('/rotation/x')
-    rotation_w = rospy.get_param('/rotation/x')
+    rotation_y = rospy.get_param('/rotation/y')
+    rotation_z = rospy.get_param('/rotation/z')
+    rotation_w = rospy.get_param('/rotation/w')
     # get the rotation and translation of the matrix
     quaternion = np.array([rotation_w, rotation_x, rotation_y, rotation_z])
     rotate_matrix = quaternion_to_rotation_matrix(quaternion)
